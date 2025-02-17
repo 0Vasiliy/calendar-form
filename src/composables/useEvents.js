@@ -2,7 +2,7 @@ import { ref, onMounted } from 'vue'
 import { fetchEvents, storeEvents, mutateEvents, destroyEvents} from '../api/events.js'
 
 export default function useEvents(){
-    const getEvents = ref([]),
+    const getEvents = ref([])
 
     const setEvents = async () => {
         getEvents.value = await fetchEvents()
