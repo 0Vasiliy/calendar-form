@@ -1,65 +1,4 @@
-<!-- <template>
-    <div v-if="isVisible" class="modal-overlay">
-      <div class="modal-content">
-        <h3>{{ isEdit ? 'Редактировать событие' : 'Добавить новое событие' }}</h3>
-        <input v-model="eventData.title" placeholder="Название события" />
-        <input v-model="eventData.start" type="datetime-local" />
-        <input v-model="eventData.end" type="datetime-local" />
-        <button @click="saveEvent">{{ isEdit ? 'Сохранить' : 'Добавить' }}</button>
-        <button @click="deleteEvent" v-if="isEdit">Удалить</button>
-        <button @click="closeModal">Закрыть</button>
-      </div>
-    </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  
-  const props = defineProps({
-    isVisible: Boolean,
-    eventData: Object,
-    isEdit: Boolean,
-    onSave: Function,
-    onDelete: Function,
-    onClose: Function
-  })
-  
-  const eventDataRef = ref({ ...props.eventData })
-  
-  const saveEvent = () => {
-    props.onSave(eventDataRef.value)
-  }
-  
-  const deleteEvent = () => {
-    props.onDelete()
-  }
-  
-  const closeModal = () => {
-    eventDataRef.value = {}
-    props.onClose()
-  }
-  </script>
-  
-  <style scoped>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  </style> -->
-  <template>
+<template>
     <div v-if="isVisible" class="modal-overlay">
         <div class="modal-content">
             <h3>{{ isEdit ? 'Редактировать событие' : 'Добавить новое событие' }}</h3>
@@ -129,24 +68,37 @@ const closeModal = () => {
 
 <style scoped>
 .modal-overlay {
+    width: 400px;
+    height: 400px;
+    background: #DCDCDC;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
+    right: 0;
+    margin: auto;
     backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+    z-index: 10000;
+    border: 2px solid gray;
+    border-radius: 4px;
 }
 
-.modal-content {
-    background: white;
+.modal-content { 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
+input, button{
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
 .error-message {
     color: red;
     margin-top: 10px;

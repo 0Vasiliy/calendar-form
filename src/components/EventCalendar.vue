@@ -41,9 +41,9 @@
     editable: true,
     selectable: true,
     weekends: true,
-    // events: getEvents(), // Загружаем события из useEvents
+    // events: getEvents(), // Загрузка события из useEvents
     select: (arg) => {
-      isEditMode.value = false; // Установить режим добавления
+      isEditMode.value = false; // Установка режима добавления
       selectedEvent.value = {
         title: '',
         start: arg.start,
@@ -53,9 +53,9 @@
       isModalVisible.value = true; // Открыть модальное окно для нового события
     },
     eventClick: (info) => {
-      isEditMode.value = true; // Установить режим редактирования
-      selectedEvent.value = { ...info.event }; // Копируем информацию о событии для редактирования
-      isModalVisible.value = true; // Открыть модальное окно для редактирования
+      isEditMode.value = true; // Установка режим редактирования
+      selectedEvent.value = { ...info.event }; // Копирование информации о событии для редактирования
+      isModalVisible.value = true; // Открытие модального окна для редактирования
     }
   });
   
@@ -75,9 +75,9 @@
   // Обработчик удаления события
   const handleDelete = async () => {
     if (selectedEvent.value) {
-      await deleteEvent(selectedEvent.value.id); // Удаляем событие по ID
-      isModalVisible.value = false; // Закрыть модальное окно
-      // Перезагрузить события, если необходимо
+      await deleteEvent(selectedEvent.value.id); // Удаление события по ID
+      isModalVisible.value = false; // Закрытие модальное окно
+      // Перезагрузить события
       options.events = getEvents();
     }
   };
