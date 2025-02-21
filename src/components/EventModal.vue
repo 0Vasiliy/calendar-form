@@ -5,7 +5,7 @@
             <input v-model="eventDataRef.title" placeholder="Название события" required />
             <input v-model="eventDataRef.start" type="datetime-local" required />
             <input v-model="eventDataRef.end" type="datetime-local" required />
-            <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div> <!-- Сообщение об ошибке -->
+            <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
             <button @click="saveEvent">{{ isEdit ? 'Сохранить' : 'Добавить' }}</button>
             <button @click="deleteEvent" v-if="isEdit">Удалить</button>
             <button @click="closeModal">Закрыть</button>
@@ -49,19 +49,21 @@ const validateEventData = () => {
 
 const saveEvent = () => {
     if (validateEventData()) {
-        props.onSave(eventDataRef.value)
-        closeModal() // Закрываем модальное окно после сохранения
+        props.onSave(eventDataRef.value);
+        closeModal();
     }
-}
+};
 
 const deleteEvent = () => {
-    props.onDelete()
-    closeModal() // Закрываем модальное окно после удаления
-}
+    if (confirm('Вы уверены, что хотите удалить это событие?')) {
+        props.onDelete(eventDataRef.value.id);
+        closeModal();
+    }
+};
 
 const closeModal = () => {
     eventDataRef.value = {}
-    errorMessage.value = '' // Сбрасываем сообщение об ошибке
+    errorMessage.value = ''
     props.onClose()
 }
 </script>
