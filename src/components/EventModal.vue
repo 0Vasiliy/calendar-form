@@ -47,13 +47,28 @@ const validateEventData = () => {
     return true
 }
 
+// const saveEvent = () => {
+//     if (validateEventData()) {
+//         props.onSave(eventDataRef.value);
+//         closeModal();
+//     }
+// };
 const saveEvent = () => {
-    if (validateEventData()) {
-        props.onSave(eventDataRef.value);
-        closeModal();
-    }
-};
+  // Устанавливаем значения по умолчанию, если start или end не указаны
+  if (!eventDataRef.value.start) {
+    eventDataRef.value.start = new Date().toISOString();
+  }
+  if (!eventDataRef.value.end) {
+    const endDate = new Date(eventDataRef.value.start);
+    endDate.setHours(endDate.getHours() + 1); // Устанавливаем end на час позже start
+    eventDataRef.value.end = endDate.toISOString();
+  }
 
+  if (validateEventData()) {
+    props.onSave(eventDataRef.value);
+    closeModal();
+  }
+};
 const deleteEvent = () => {
     if (confirm('Вы уверены, что хотите удалить это событие?')) {
         props.onDelete(eventDataRef.value.id);

@@ -19,32 +19,40 @@ export default function useEvents() {
             console.error('Ошибка получения событий: ', error);
         }
     };
-
-    // Функция для создания нового события
     const createEvent = async (event) => {
         try {
-            const newEventId = await storeEvents(event); // Сохраняем событие в Firebase
-            const newEvent = { id: newEventId, ...event }; // Добавляем ID к событию
-            getEvents.value.push(newEvent); // Добавляем событие в локальный список
-            return newEvent; // Возвращаем новое событие с ID
+          // Преобразуем даты в формат ISO
+          const formattedEvent = {
+            ...event,
+            start: new Date(event.start).toISOString(),
+            end: new Date(event.end).toISOString(),
+          };
+          const newEventId = await storeEvents(formattedEvent);
+          const newEvent = { id: newEventId, ...formattedEvent };
+          getEvents.value.push(newEvent);
+          return newEvent;
         } catch (error) {
-            console.error('Ошибка при создании события: ', error);
+          console.error('Ошибка при создании события: ', error);
         }
-    };
-
-    // Функция для обновления существующего события
-    const updateEvent = async (event, id) => {
+      };
+      
+      const updateEvent = async (event, id) => {
         try {
-            await mutateEvents(event, id); // Обновляем событие в Firebase
-            const index = getEvents.value.findIndex(ev => ev.id === id);
-            if (index !== -1) {
-                getEvents.value[index] = { ...getEvents.value[index], ...event }; // Обновляем событие в локальном списке
-            }
+          // Преобразуем даты в формат ISO
+          const formattedEvent = {
+            ...event,
+            start: new Date(event.start).toISOString(),
+            end: new Date(event.end).toISOString(),
+          };
+          await mutateEvents(formattedEvent, id);
+          const index = getEvents.value.findIndex(ev => ev.id === id);
+          if (index !== -1) {
+            getEvents.value[index] = { ...getEvents.value[index], ...formattedEvent };
+          }
         } catch (error) {
-            console.error('Ошибка при обновлении события: ', error);
+          console.error('Ошибка при обновлении события: ', error);
         }
-    };
-
+      };
     // Функция для удаления события
     const deleteEvent = async (id) => {
         try {
