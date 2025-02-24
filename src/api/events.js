@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, push, update, remove, get } from 'firebase/database';
 
-// Конфигурация Firebase
+// Конфигурация Firebase // Demo Basa
 const firebaseConfig = {
     apiKey: "AIzaSyBjP3AEJNKVFp07ROomynZ_QzNYyzsug_4",
     authDomain: "vet-onlain.firebaseapp.com",

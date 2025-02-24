@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="event-calendar">
     <FullCalendar v-bind:options="options" />
     <EventModal 
       :isVisible="isModalVisible" 
@@ -22,6 +22,7 @@ import ListPlugin from '@fullcalendar/list';
 import InteractionPlugin from '@fullcalendar/interaction';
 import useEvents from '../composables/useEvents.js';
 import EventModal from './EventModal.vue';
+import allLocales from '@fullcalendar/core/locales-all';
 
 const { getEvents, createEvent, updateEvent, deleteEvent, setEvents } = useEvents();
 
@@ -37,17 +38,17 @@ onMounted(async () => {
 
 const options = reactive({
   plugins: [DayGridPlugin, TimeGridPlugin, ListPlugin, InteractionPlugin], 
+  locale: 'ru',
   initialView: 'dayGridMonth', 
   headerToolbar: {
       left: 'prev,next today',
       center: 'title', 
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,list' 
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,list', 
   },
   editable: true, 
   selectable: true, 
   weekends: true, 
   events: events.value, 
-  locale: 'ru',
   select: (arg) => {
       isEditMode.value = false;
       selectedEvent.value = {
@@ -133,3 +134,9 @@ watch(events, (newEvents) => {
   }));
 }, { deep: true });
 </script>
+<style>
+.event-calendar{
+  max-width: 1620px;
+  margin: 0 auto;
+}
+</style>
