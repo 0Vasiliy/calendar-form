@@ -23,7 +23,6 @@ import InteractionPlugin from '@fullcalendar/interaction';
 import useEvents from '../composables/useEvents.js';
 import EventModal from './EventModal.vue';
 import allLocales from '@fullcalendar/core/locales-all';
-// import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 const { getEvents, createEvent, updateEvent, deleteEvent, setEvents } = useEvents();
 
 const isModalVisible = ref(false);

@@ -47,12 +47,6 @@ const validateEventData = () => {
     return true
 }
 
-// const saveEvent = () => {
-//     if (validateEventData()) {
-//         props.onSave(eventDataRef.value);
-//         closeModal();
-//     }
-// };
 const saveEvent = () => {
   // Устанавливаем значения по умолчанию, если start или end не указаны
   if (!eventDataRef.value.start) {
