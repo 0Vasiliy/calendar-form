@@ -23,7 +23,7 @@ import InteractionPlugin from '@fullcalendar/interaction';
 import useEvents from '../composables/useEvents.js';
 import EventModal from './EventModal.vue';
 import allLocales from '@fullcalendar/core/locales-all';
-
+// import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 const { getEvents, createEvent, updateEvent, deleteEvent, setEvents } = useEvents();
 
 const isModalVisible = ref(false);
@@ -38,13 +38,24 @@ onMounted(async () => {
 
 const options = reactive({
   plugins: [DayGridPlugin, TimeGridPlugin, ListPlugin, InteractionPlugin], 
+  initialView:'dayGridMonth',
+  locales: allLocales,
   locale: 'ru',
-  initialView: 'dayGridMonth', 
   headerToolbar: {
       left: 'prev,next today',
       center: 'title', 
       right: 'dayGridMonth,timeGridWeek,timeGridDay,list', 
   },
+  events: [
+    {
+      display: 'background',
+      backgroundColor: 'yellow',
+      color: 'yellow',
+    }
+  ],
+  nowIndicator: true,
+  eventBackgroundColor:'teal',
+  eventColor: 'gray',
   editable: true, 
   selectable: true, 
   weekends: true, 
