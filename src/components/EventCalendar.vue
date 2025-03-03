@@ -1,5 +1,6 @@
 <template>
   <div class="event-calendar">
+    <h1> Календарь записи событий</h1>
     <FullCalendar v-bind:options="options" />
     <EventModal 
       :isVisible="isModalVisible" 
@@ -148,5 +149,28 @@ watch(events, (newEvents) => {
 .event-calendar{
   max-width: 1620px;
   margin: 0 auto;
+}
+h1{
+  text-align: center;
+  color: gray;
+}
+.fc-button-group{
+  gap: 5px;
+}
+@media (max-width: 750px){
+.fc .fc-button{
+  padding: 2px;
+}
+.fc .fc-toolbar-title{
+  font-size: 1.3em;
+}
+}
+@media (max-width:550px){
+  .fc .fc-toolbar{
+    flex-direction: column;
+  }
+  .fc .fc-toolbar-title {
+   padding:2px 0px 5px 0px;
+  }       
 }
 </style>
