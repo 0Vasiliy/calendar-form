@@ -3,8 +3,8 @@
         <div class="modal-content">
             <h3>{{ isEdit ? 'Редактировать событие' : 'Добавить новое событие' }}</h3>
             <input v-model="eventDataRef.title" placeholder="Название события" required />
-            <input v-model="eventDataRef.start" type="datetime-local" required />
-            <input v-model="eventDataRef.end" type="datetime-local" required />
+            <input v-model="eventDataRef.start" type="date" required />
+            <input v-model="eventDataRef.end" type="date" required />
             <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
             <button @click="saveEvent">{{ isEdit ? 'Сохранить' : 'Добавить' }}</button>
             <button @click="deleteEvent" v-if="isEdit">Удалить</button>
@@ -113,5 +113,11 @@ input, button{
 .error-message {
     color: red;
     margin-top: 10px;
+}
+@media(max-width: 700px){
+    .modal-overlay{
+        width: 300px;
+        height: 350px;
+    }
 }
 </style>

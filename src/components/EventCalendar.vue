@@ -11,6 +11,7 @@
       @close="closeModal" 
     />
   </div>
+  <div class="event-web">©Все права защищены.Web-Студия ЛИС.</div>
 </template>
 
 <script setup>
@@ -157,12 +158,22 @@ h1{
 .fc-button-group{
   gap: 5px;
 }
+.event-web{
+  color: gray;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+}
 @media (max-width: 750px){
 .fc .fc-button{
   padding: 2px;
 }
 .fc .fc-toolbar-title{
   font-size: 1.3em;
+}
+.fc-event-title{
+  font-size: 12px;
 }
 }
 @media (max-width:550px){
@@ -171,6 +182,19 @@ h1{
   }
   .fc .fc-toolbar-title {
    padding:2px 0px 5px 0px;
-  }       
+  }  
+  .fc-event-title{
+  font-size: 10px;
+}  
+.fc .fc-col-header-cell-cushion{
+  font-size: 12px;
+}   
+.event-web{
+justify-content: center;
+}
+.fc-direction-ltr .fc-daygrid-event .fc-event-time{
+  margin-right: 1px;
+  font-size: 10px;
+}
 }
 </style>
