@@ -10,8 +10,8 @@
       @delete="handleDelete" 
       @close="closeModal" 
     />
+    <div class="event-web">©Все права защищены.Web-Студия ЛИС.</div>
   </div>
-  <div class="event-web">©Все права защищены.Web-Студия ЛИС.</div>
 </template>
 
 <script setup>
@@ -145,6 +145,7 @@ watch(events, (newEvents) => {
       allDay: event.allDay
   }));
 }, { deep: true });
+
 </script>
 <style>
 .event-calendar{
@@ -160,7 +161,7 @@ h1{
 }
 .event-web{
   color: gray;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   justify-content: flex-end;
   padding: 15px;
@@ -179,17 +180,18 @@ h1{
 @media (max-width:550px){
   .fc .fc-toolbar{
     flex-direction: column;
-  }
-  .fc .fc-toolbar-title {
+}
+.fc .fc-toolbar-title {
    padding:2px 0px 5px 0px;
-  }  
-  .fc-event-title{
+ }  
+.fc-event-title{
   font-size: 10px;
 }  
 .fc .fc-col-header-cell-cushion{
   font-size: 12px;
 }   
 .event-web{
+font-size: 12px;
 justify-content: center;
 }
 .fc-direction-ltr .fc-daygrid-event .fc-event-time{
