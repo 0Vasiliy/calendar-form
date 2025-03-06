@@ -54,6 +54,11 @@ const options = reactive({
       color: 'yellow',
     }
   ],
+  eventResizableFromStart: true,
+  eventDurationEditable: true,
+  eventDragMinDistance: true,
+  eventResize: true,
+  eventStartEditable: true,
   nowIndicator: true,
   eventBackgroundColor:'teal',
   eventColor: 'gray',
